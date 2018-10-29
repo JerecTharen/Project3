@@ -1,9 +1,12 @@
-$.ajax({
-    url: '../data/course.JSON',
-    type: 'GET',
-    success: (resolve,reject) => {
-        console.log('connection established');
-    }
+let promise = new Promise((resolve,reject)=>{
+    $.ajax({
+        url: './data/course.JSON',
+        type: 'GET',
+        success: (response,status) => {
+            console.log('connection established');
+            // console.log(response);
+        }
+    })
 });
 let currentID = 0;
 class AllPlayers{
@@ -38,7 +41,7 @@ class Player{
         this.score = score;
     }
     changeActive(){
-        if (this.active === true){
+        if (this.active){
             this.active = false;
         }
         else{
@@ -51,3 +54,4 @@ class Player{
         }
     }
 }
+console.log('code has loaded');
