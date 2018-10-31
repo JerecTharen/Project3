@@ -26,3 +26,14 @@ body{
     border: solid deepskyblue 3px;
     margin: 0 .5em;
 }
+
+.tableSpace{
+    margin-top: 1em;
+}
+.scoreTable{
+    display: flex;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+}
