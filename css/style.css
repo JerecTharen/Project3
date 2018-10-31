@@ -1,0 +1,28 @@
+html,body {
+    width: 100%;
+    height: auto;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.containsAll{
+    margin-left: .5em;
+}
+#courseSelect{
+    display: flex;
+    width: 50%;
+    align-items: center;
+}
+.courseName{
+    border: solid black 3px;
+    padding: .1em;
+    border-radius: .5em;
+    margin: 0 .1em;
+}
+.active{
+    border: solid deepskyblue 3px;
+    margin: 0 .5em;
+}

@@ -5,7 +5,11 @@ let promise = new Promise((resolve,reject)=>{
         success: (response,status) => {
             console.log('connection established');
             // console.log(response);
-        }
+            resolve(response);
+        },
+        error: (err)=>{
+            reject(err);
+    }
     })
 });
 let currentID = 0;
