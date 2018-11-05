@@ -28,6 +28,7 @@ body{
 }
 .tableSpace h1, .tableSpace input {
     margin: 0;
+    padding: 0;
 }
 .tableSpace{
     margin-top: 1em;
