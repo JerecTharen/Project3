@@ -26,7 +26,9 @@ body{
     border: solid deepskyblue 3px;
     margin: 0 .5em;
 }
-
+.tableSpace h1, .tableSpace input {
+    margin: 0;
+}
 .tableSpace{
     margin-top: 1em;
 }
@@ -36,4 +38,7 @@ body{
 .col{
     display: flex;
     flex-direction: column;
+}
+input {
+    display: block;
 }
