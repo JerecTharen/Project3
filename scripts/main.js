@@ -1,10 +1,10 @@
 let promise = new Promise((resolve,reject)=>{
     $.ajax({
-        url: './data/course.JSON',
+        url: 'https://golf-courses-api.herokuapp.com/courses/11819',
         type: 'GET',
         success: (response,status) => {
             console.log('connection established');
-            // console.log(response);
+            console.log(response);
             resolve(response);
         },
         error: (err)=>{

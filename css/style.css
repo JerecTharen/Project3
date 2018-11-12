@@ -26,26 +26,38 @@ body{
     border: solid deepskyblue 3px;
     margin: 0 .5em;
 }
-.tableSpace h1, .tableSpace input {
-    margin: 0;
-    padding: 0;
-}
+/*.tableSpace h1, .tableSpace input {*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+/*}*/
 .tableSpace{
     margin-top: 1em;
 }
 .scoreTable{
     display: flex;
+    margin-bottom: 2em;
 }
 .col{
     display: flex;
     flex-direction: column;
     margin: 0 1em;
     justify-content: space-between;
+    align-items: center;
+    padding: 0;
 }
-#col0{
+#col0,#col02{
     font-weight: bold;
 }
 input {
     display: block;
+    padding: 0;
     width: 5em;
+    height: 2em;
+    font-size: 14px;
+}
+p {
+    margin: 0;
+    padding: 0;
+    height: 2em;
+    text-align: center;
 }
