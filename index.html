@@ -16,15 +16,13 @@
 </head>
 <body>
 
-
     <div class="containsAll">
-        <h1>Golf Score Card</h1>
+        <h1>Gold Score Card</h1>
 
-        <div id="courseSelect">
-            <i class="fas fa-plus"></i>
-            <span class="courseName active">Course Name Here</span>
-            <span class="courseName">Course Name Here</span>
-            <span class="courseName">Course Name Here</span>
+        <div class="courseSelect">
+            <select id="courseDrop">
+                <option value="default">--DEFUALT--</option>
+            </select>
         </div>
 
         <div class="tableSpace">
@@ -35,99 +33,85 @@
                 <option value="1">Men</option>
                 <option value="2">Women</option>
             </select>
-            <!--<table class="scoreTable">-->
-                <!--<tr>-->
-                    <!--<th>Hole:</th>-->
-                <!--</tr>-->
-            <!--</table>-->
+
             <div class="scoreTable">
                 <div id="col0" class="col">
                     <p>Hole:</p>
                     <p>Yardage:</p>
                     <p>Handicap:</p>
                     <p>PAR</p>
-                    <p>P1 Name Here</p>
-                    <p>P2 Name Here</p>
+
                 </div>
                 <div id="col1" class="col">
                     <p>1</p>
-                    <p id="1yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h1">
-                    <input type="text" id="p2h1">
+                    <p id="1yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col2">
                     <p>2</p>
-                    <p id="2yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h2">
-                    <input type="text" id="p2h2">
+                    <p id="2yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col3">
                     <p>3</p>
-                    <p id="3yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h3">
-                    <input type="text" id="p2h3">
+                    <p id="3yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col4">
                     <p>4</p>
-                    <p id="4yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h4">
-                    <input type="text" id="p2h4">
+                    <p id="4yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col5">
                     <p>5</p>
-                    <p id="5yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h5">
-                    <input type="text" id="p2h5">
+                    <p id="5yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col6">
                     <p>6</p>
-                    <p id="6yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h6">
-                    <input type="text" id="p2h6">
+                    <p id="6yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col7">
                     <p>7</p>
-                    <p id="7yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h7">
-                    <input type="text" id="p2h7">
+                    <p id="7yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col8">
                     <p>8</p>
-                    <p id="8yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h8">
-                    <input type="text" id="p2h8">
+                    <p id="8yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col9">
                     <p>9</p>
-                    <p id="9yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h9">
-                    <input type="text" id="p2h9">
+                    <p id="9yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="outTotal">
                     <p>Out Scores</p>
                     <p>--</p>
                     <p>--</p>
-                    <p>40</p>
-                    <p>50</p>
-                    <p>50</p>
+                    <p>--</p>
+                    <p>--</p>
+                    <p>--</p>
                 </div>
             </div> <!-- end of out scores -->
 
@@ -137,112 +121,102 @@
                     <p>Yardage:</p>
                     <p>Handicap:</p>
                     <p>PAR</p>
-                    <p>P1 Name Here</p>
-                    <p>P2 Name Here</p>
+
                 </div>
                 <div class="col" id="col10">
                     <p>10</p>
-                    <p id="10yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h10">
-                    <input type="text" id="p2h10">
+                    <p id="10yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col11">
                     <p>11</p>
-                    <p id="11yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h11">
-                    <input type="text" id="p2h11">
+                    <p id="11yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col12">
                     <p>12</p>
-                    <p id="12yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h12">
-                    <input type="text" id="p2h12">
+                    <p id="12yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col13">
                     <p>13</p>
-                    <p id="13yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h13">
-                    <input type="text" id="p2h13">
+                    <p id="13yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col14">
                     <p>14</p>
-                    <p id="14yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h14">
-                    <input type="text" id="p2h14">
+                    <p id="14yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col15">
                     <p>15</p>
-                    <p id="15yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h15">
-                    <input type="text" id="p2h15">
+                    <p id="15yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col16">
                     <p>16</p>
-                    <p id="16yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h16">
-                    <input type="text" id="p2h16">
+                    <p id="16yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col17">
                     <p>17</p>
-                    <p id="17yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h17">
-                    <input type="text" id="p2h17">
+                    <p id="17yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="col18">
                     <p>18</p>
-                    <p id="18yard">363</p>
-                    <p>11</p>
-                    <p>4</p>
-                    <input type="text" id="p1h18">
-                    <input type="text" id="p2h18">
+                    <p id="18yard">---</p>
+                    <p>--</p>
+                    <p>--</p>
+
                 </div>
                 <div class="col" id="inTotal">
                     <p>In Scores</p>
                     <p>--</p>
                     <p>--</p>
-                    <p>40</p>
-                    <p>50</p>
-                    <p>50</p>
+                    <p>--</p>
+                    <p>--</p>
+                    <p>--</p>
                 </div>
                 <div class="col" id="subTotal">
                     <p>SubTotal</p>
                     <p>--</p>
                     <p>--</p>
-                    <p>80</p>
-                    <p>100</p>
-                    <p>100</p>
+                    <p>--</p>
+                    <p>--</p>
+                    <p>--</p>
                 </div>
                 <div class="col" id="totalRelToPar">
                     <p>Total</p>
                     <p>--</p>
                     <p>--</p>
-                    <p>80</p>
-                    <p>20</p>
-                    <p>20</p>
+                    <p>--</p>
+                    <p>--</p>
+                    <p>--</p>
                 </div>
 
             </div>  <!--end of in scoreTable div -->
 
         </div><!-- end of tableSpace -->
 
-    </div><!-- end of containsAll -->
 
+    </div>
 
 </body>
 </html>

@@ -1,17 +1,38 @@
-let promise = new Promise((resolve,reject)=>{
+
+let coursesRequest = new Promise((resolve,reject)=>{
     $.ajax({
-        url: 'https://golf-courses-api.herokuapp.com/courses/11819',
+        url:'https://golf-courses-api.herokuapp.com/courses',
         type: 'GET',
-        success: (response,status) => {
-            console.log('connection established');
+        success: (response,status)=>{
             console.log(response);
-            resolve(response);
-        },
-        error: (err)=>{
-            reject(err);
-    }
+            let returnCode = '<option value="default">--DEFAULT--</option>';
+            for (let i = 0; i < response.courses.length;i++){
+                returnCode += `<option value="${response.courses[i].id}">${response.courses[i].name}</option>`;
+            }
+            document.getElementById('courseDrop').innerHTML = returnCode;
+        }
     })
 });
+
+
+// let promise = new Promise((resolve,reject)=>{
+//     $.ajax({
+//         //url: `https://golf-courses-api.herokuapp.com/courses/${courseID}`,
+//         url: 'https://golf-courses-api.herokuapp.com/courses/18300',
+//         type: 'GET',
+//         success: (response,status) => {
+//             console.log('connection established');
+//             console.log(response);
+//             resolve(response);
+//         },
+//         error: (err)=>{
+//             reject(err);
+//     }
+//     })
+// });
+
+
+
 let currentID = 0;
 class AllPlayers{
     constructor(players,hole){
