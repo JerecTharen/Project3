@@ -50,7 +50,7 @@ function loadCourse(courseID){
 }
 
 function chooseCourse(courseID){
-    console.log('hello there');
+    // console.log('hello there');
     promise = loadCourse(courseID);
     promise.then((response)=>{
         theCourse = response;
@@ -58,6 +58,7 @@ function chooseCourse(courseID){
 }
 
 function chooseTee(type){
+    tee = new TeeType(null,[],[],[],[]);
     tee.id = type;
     for (let i = 0; i < 18; i++){
         tee.myMeters.push(theCourse.data.holes[i].teeBoxes[type].meters);
