@@ -1,7 +1,8 @@
 
 let theCourse = null;
 let playerNum = 0;
-
+let firstDraw = true;
+let drawHoleInfo = [];
 
 class TeeType{
     constructor(id,yards, meters,handi,par){
@@ -66,6 +67,20 @@ function chooseTee(type){
         tee.handi.push(theCourse.data.holes[i].teeBoxes[type].hcp);
         tee.myPar.push(theCourse.data.holes[i].teeBoxes[type].par);
     }
+
+    firstDraw = true;
+    if (drawHoleInfo[0] !== undefined){
+        for (let initalIter = 0; initalIter < 18; initalIter++){
+            document.getElementById(`col${initalIter+1}`).innerHTML = drawHoleInfo[initalIter];
+        }
+    }
+    if(tee.id !== null){
+        for (let i = 0; i < 18; i++){
+            document.getElementById(`${i+1}yard`).innerHTML = tee.myYards[i];
+            document.getElementById(`${i+1}handi`).innerHTML = tee.handi[i];
+            document.getElementById(`${i+1}par`).innerHTML = tee.myPar[i];
+        }
+    }
     drawPage();
 }
 
@@ -117,6 +132,20 @@ class Player{
             this.score += this.holes[i];
         }
     }
+    inScore(){
+        let result = 0;
+        for(let i =0; i < 9; i++){
+            result += this.holes[i];
+        }
+        return result;
+    }
+    outScore(){
+        let result = 0;
+        for (let i=9; i < 18; i++){
+            result += this.holes[i];
+        }
+        return result;
+    }
 }
 console.log('code has loaded');
 
@@ -131,11 +160,25 @@ function drawPage(){
             document.getElementById(`${i+1}par`).innerHTML = tee.myPar[i];
         }
     }
+    if(firstDraw){
+        for (let y = 0; y < 18; y++){
+            drawHoleInfo[y] = document.getElementById(`col${y+1}`).innerHTML;
+        }
+        firstDraw = false;
+    }
     document.getElementById('col0').innerHTML = `<p>Hole:</p><p>Yardage:</p><p>Handicap:</p><p>PAR</p>`;
     document.getElementById('col02').innerHTML = `<p>Hole:</p><p>Yardage:</p><p>Handicap:</p><p>PAR</p>`;
     for (let x = 0; x < players.players.length;x++){
         document.getElementById('col0').innerHTML += `<p>${players.players[x].name}</p>`;
         document.getElementById('col02').innerHTML += `<p>${players.players[x].name}</p>`;
+    }
+    for (let initalIter = 0; initalIter < 18; initalIter++){
+        document.getElementById(`col${initalIter+1}`).innerHTML = drawHoleInfo[initalIter];
+    }
+    for (let pIteration = 0; pIteration < players.players.length; pIteration ++){
+        for (let hIteration = 0; hIteration < 18; hIteration++){
+            document.getElementById(`col${hIteration+1}`).innerHTML += `<input type="number" id="p${pIteration}h${hIteration}">`;
+        }
     }
 }
 
@@ -143,7 +186,7 @@ function drawPage(){
 function showAddPlayer(){
     document.getElementById('modalSpace').style.display ='block';
     document.getElementById('addplayerSpace').style.display = 'block';
-    document.getElementsByClassName('containsAll')[0].blur();
+    document.getElementsByClassName('containsAll')[0].style.filter = 'blur(5px)';
 }
 function addPlayer(){
     let name = document.getElementById('playerName');
@@ -154,7 +197,7 @@ function addPlayer(){
 
     }
     else{
-        players.addPlayer(name.value,playerNum,[],false,0);
+        players.addPlayer(name.value,playerNum,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],false,0);
         hideAddPlayer();
         drawPage();
         hideMessageSpace();
@@ -164,7 +207,7 @@ function addPlayer(){
 function hideAddPlayer(){
     document.getElementById('modalSpace').style.display ='none';
     document.getElementById('addplayerSpace').style.display = 'none';
-    // document.getElementsByClassName('containsAll')[0].blur();
+    document.getElementsByClassName('containsAll')[0].style.filter = 'blur(0px)';
 }
 function hideMessageSpace(){
     document.getElementById('messageSpace').style.display = 'none';
