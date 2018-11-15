@@ -11,6 +11,42 @@ class TeeType{
         this.myMeters = meters;
         this.handi = handi;
         this.myPar = par;
+        this.totalPar = 0;
+        this.totalYards = 0;
+        this.parInTotal = 0;
+        this.parOutTotal = 0;
+        this.yardsInTotal = 0;
+        this.yardsOutTotal = 0;
+    }
+    caclTotalPar(){
+        for (let i = 0; i < this.myPar.length; i++){
+            this.totalPar += this.myPar[i];
+        }
+    }
+    calcOutPar(){
+        for (let i = 0; i < 9; i++){
+            this.parOutTotal += this.myPar[i];
+        }
+    }
+    calcInPar(){
+        for (let i = 9; i < this.myPar.length; i++){
+            this.parInTotal += this.myPar[i];
+        }
+    }
+    calcTotalYards(){
+        for (let i = 0; i< this.myYards.length;i++){
+            this.totalYards += this.myYards[i];
+        }
+    }
+    calcOutYards(){
+        for (let i = 0; i < 9; i++){
+            this.yardsOutTotal += this.myYards[i];
+        }
+    }
+    calcInYards(){
+        for (let i = 9; i < this.myYards.length; i++){
+            this.yardsInTotal += this.myYards[i];
+        }
     }
 }
 let tee = new TeeType(null,[],[],[],[]);
@@ -67,6 +103,12 @@ function chooseTee(type){
         tee.handi.push(theCourse.data.holes[i].teeBoxes[type].hcp);
         tee.myPar.push(theCourse.data.holes[i].teeBoxes[type].par);
     }
+    tee.caclTotalPar();
+    tee.calcTotalYards();
+    tee.calcInPar();
+    tee.calcOutPar();
+    tee.calcOutYards();
+    tee.calcInYards();
 
     firstDraw = true;
     if (drawHoleInfo[0] !== undefined){
@@ -119,6 +161,10 @@ class Player{
         this.active = isActive;
         this.score = score;
     }
+    setScore(hole,value){
+        this.holes[hole] = Number(value);
+        drawPage();
+    }
     changeActive(){
         if (this.active){
             this.active = false;
@@ -128,21 +174,23 @@ class Player{
         }
     }
     totalScore(){
+        this.score = 0;
         for(let i=0;i<this.holes.length;i++){
-            this.score += this.holes[i];
+            this.score += Number(this.holes[i]);
         }
+        return this.score;
     }
     inScore(){
         let result = 0;
-        for(let i =0; i < 9; i++){
-            result += this.holes[i];
+        for(let i =9; i < 18; i++){
+            result += Number(this.holes[i]);
         }
         return result;
     }
     outScore(){
         let result = 0;
-        for (let i=9; i < 18; i++){
-            result += this.holes[i];
+        for (let i=0; i < 9; i++){
+            result += Number(this.holes[i]);
         }
         return result;
     }
@@ -177,8 +225,21 @@ function drawPage(){
     }
     for (let pIteration = 0; pIteration < players.players.length; pIteration ++){
         for (let hIteration = 0; hIteration < 18; hIteration++){
-            document.getElementById(`col${hIteration+1}`).innerHTML += `<input type="number" id="p${pIteration}h${hIteration}">`;
+            document.getElementById(`col${hIteration+1}`).innerHTML += `<input onchange="players.players[${pIteration}].setScore(${hIteration},this.value)" type="number" id="p${pIteration}h${hIteration}">`;
+            document.getElementById(`p${pIteration}h${hIteration}`).value = players.players[pIteration].holes[hIteration];
         }
+    }
+    document.getElementById('outTotal').innerHTML = `<p>Out Scores</p><p id="yardOutTotal">${tee.yardsOutTotal}</p><p>--</p><p id="parOutTotal">${tee.parOutTotal}</p>`;
+    document.getElementById('inTotal').innerHTML = `<p>In Scores</p><p id="yardInTotal">${tee.yardsInTotal}</p><p>--</p><p id="parInTotal">${tee.parInTotal}</p>`;
+    document.getElementById('subTotal').innerHTML = `<p>SubTotal</p><p class="yardTotal">${tee.totalYards}</p><p>--</p><p class="parTotal">${tee.totalPar}</p>`;
+    document.getElementById('totalRelToPar').innerHTML = `<p>Total</p><p class="yardOutTotal"${tee.totalYards}</p><p>--</p><p class="parOutTotal">${tee.totalPar}</p>`;
+
+    for (let totalIter = 0; totalIter < players.players.length; totalIter++){
+        document.getElementById('outTotal').innerHTML += `<p>${players.players[totalIter].outScore()}</p>`;
+        document.getElementById('inTotal').innerHTML +=  `<p>${players.players[totalIter].inScore()}</p>`;
+        document.getElementById('subTotal').innerHTML +=  `<p>${players.players[totalIter].totalScore()}</p>`;
+        document.getElementById('totalRelToPar').innerHTML +=  `<p>${players.players[totalIter].totalScore()- tee.totalPar}</p>`;
+
     }
 }
 
@@ -212,4 +273,3 @@ function hideAddPlayer(){
 function hideMessageSpace(){
     document.getElementById('messageSpace').style.display = 'none';
 }
-
