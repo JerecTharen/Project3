@@ -3,6 +3,7 @@ let theCourse = null;
 let playerNum = 0;
 let firstDraw = true;
 let drawHoleInfo = [];
+let background = [];
 
 class TeeType{
     constructor(id,yards, meters,handi,par){
@@ -63,6 +64,9 @@ let coursesRequest = new Promise((resolve,reject)=>{
                 returnCode += `<option value="${response.courses[i].id}">${response.courses[i].name}</option>`;
             }
             document.getElementById('courseDrop').innerHTML = returnCode;
+            for (let x = 0; x < response.courses.length; x++){
+                background.push(response.courses[x].image);
+            }
         }
     })
 });
@@ -92,6 +96,15 @@ function chooseCourse(courseID){
     promise.then((response)=>{
         theCourse = response;
     });
+    if(courseID == 18300){
+        document.getElementsByTagName('body')[0].style.backgroundImage = `url("${background[0]}")`;
+    }
+    else if(courseID == 11819){
+        document.getElementsByTagName('body')[0].style.backgroundImage = `url("${background[1]}")`;
+    }
+    else if(courseID == 19002){
+        document.getElementsByTagName('body')[0].style.backgroundImage = `url("${background[2]}")`;
+    }
 }
 
 function chooseTee(type){

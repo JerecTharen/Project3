@@ -10,11 +10,17 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #031926;
 }
 
 .containsAll{
     /*width: 100%;*/
     margin-left: .5em;
+    background-color: #326273;
+    border-radius: 1em;
+    padding: 1em;
 }
 .courseSelect{
     margin-top: .5em;
@@ -101,4 +107,7 @@ a{
     .sideBySide{
         display: flex;
     }
+}
+input, select,option,button{
+    background-color: #77ACA2;
 }
