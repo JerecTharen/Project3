@@ -250,7 +250,12 @@ function drawPage(){
     for (let pIteration = 0; pIteration < players.players.length; pIteration ++){
         for (let hIteration = 0; hIteration < 18; hIteration++){
             document.getElementById(`col${hIteration+1}`).innerHTML += `<input onchange="players.players[${pIteration}].setScore(${hIteration},this.value)" type="number" id="p${pIteration}h${hIteration}">`;
-            document.getElementById(`p${pIteration}h${hIteration}`).value = players.players[pIteration].holes[hIteration];
+            // document.getElementById(`p${pIteration}h${hIteration}`).value = players.players[pIteration].holes[hIteration];
+        }
+    }
+    for (let pIter2 = 0; pIter2 < players.players.length; pIter2++){
+        for (let hIter2 = 0; hIter2 < 18; hIter2++){
+            document.getElementById(`p${pIter2}h${hIter2}`).value = players.players[pIter2].holes[hIter2];
         }
     }
     document.getElementById('outTotal').innerHTML = `<p>Out Scores</p><p id="yardOutTotal">${tee.yardsOutTotal}</p><p>--</p><p id="parOutTotal">${tee.parOutTotal}</p>`;
@@ -272,6 +277,7 @@ function showAddPlayer(){
     document.getElementById('modalSpace').style.display ='block';
     document.getElementById('addplayerSpace').style.display = 'block';
     document.getElementsByClassName('containsAll')[0].style.filter = 'blur(5px)';
+    hideMessageSpace();
 }
 function addPlayer(){
     let name = document.getElementById('playerName');
