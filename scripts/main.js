@@ -197,6 +197,7 @@ class Player{
     }
     messageCheck(){
         let test = 0;
+        let compPAR = this.score - tee.totalPar;
         for (let i = 0; i < this.holes.length;i++){
             if (this.holes[i] != 0 || this.holes[i] != ''){
                 test += 1;
@@ -204,15 +205,15 @@ class Player{
         }
         if (test >= 18){
             if(this.score - tee.totalPar > 0){
-                document.getElementById('messageSpace').innerHTML = `<h3>Good try ${this.name}!</h3>`;
+                document.getElementById('messageSpace').innerHTML = `<h3>${compPAR} over par, good try ${this.name}!</h3>`;
                 showMessageSpace();
             }
             else if (this.score - tee.totalPar == 0){
-                document.getElementById('messageSpace').innerHTML = `<h3>Wow, you got PAR ${this.name}, great job!</h3>`;
+                document.getElementById('messageSpace').innerHTML = `<h3>${compPAR} - Wow, you got PAR ${this.name}, great job!</h3>`;
                 showMessageSpace();
             }
             else{
-                document.getElementById('messageSpace').innerHTML = `<h3>Your under PAR! Looks like you're ready to go pro ${this.name}!</h3>`;
+                document.getElementById('messageSpace').innerHTML = `<h3>You're ${compPAR} under PAR! Looks like you're ready to go pro ${this.name}!</h3>`;
                 showMessageSpace();
             }
         }
@@ -274,11 +275,22 @@ function showAddPlayer(){
 }
 function addPlayer(){
     let name = document.getElementById('playerName');
+    let nameThere = false;
+    for (let i = 0; i < players.players.length; i++){
+        if (players.players[i].name == name.value){
+            nameThere = true;
+        }
+    }
     if (name.value == 0 || name.value == ''){
         let messageSpace = document.getElementById('messageSpace');
         messageSpace.style.display = 'block';
         messageSpace.innerHTML = '<h3>You did not enter a correct name</h3>';
 
+    }
+    else if(nameThere === true ){
+        let messageSpace = document.getElementById('messageSpace');
+        messageSpace.innerHTML = '<h3>That Name Already Exists</h3>';
+        messageSpace.style.display = 'block';
     }
     else{
         players.addPlayer(name.value,playerNum,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],false,0);
