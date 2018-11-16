@@ -78,12 +78,12 @@ p {
 
 #modalSpace{
     display: none;
-    border: black solid 3px;
+    border: #192D39 solid 3px;
     position: absolute;
     margin: auto;
     padding: .5em;
     z-index: 5;
-    background-color: #dadfea;
+    background-color: #326273;
 }
 #addplayerSpace{
     display: none;
@@ -101,11 +101,21 @@ a{
     text-decoration: none;
 }
 @media only screen and (max-width: 600px) {
+    body,html{
+        width: auto;
+    }
+    .tableSpace{
+        width: 100%;
+    }
+    .scoreTable{
+        width: 100%;
+    }
     .containsAll{
         width: 100%;
     }
     .sideBySide{
         display: flex;
+        /*width: 100%;*/
     }
 }
 input, select,option,button{
