@@ -165,6 +165,14 @@ class AllPlayers{
         }
         drawPage();
     }
+    editPlayerName(pID,name){
+        for (let i=0;i<this.players.length;i++){
+            if (this.players[i].id === pID){
+                this.players[i].name = name;
+            }
+        }
+        drawPage();
+    }
 }
 
 class Player{
@@ -175,9 +183,6 @@ class Player{
         this.active = isActive;
         this.score = score;
     }
-    // changeName(){
-    //     this.name =
-    // }
     setScore(hole,value){
         this.holes[hole] = Number(value);
         drawPage();
@@ -258,7 +263,7 @@ function drawPage(){
     document.getElementById('col0').innerHTML = `<p>Hole:</p><p>Yardage:</p><p>Handicap:</p><p>PAR</p>`;
     document.getElementById('col02').innerHTML = `<p>Hole:</p><p>Yardage:</p><p>Handicap:</p><p>PAR</p>`;
     for (let x = 0; x < players.players.length;x++){
-        document.getElementById('col0').innerHTML += `<p><i onclick="players.removePlayer(${players.players[x].id})" class="fas fa-trash-alt"></i> ${players.players[x].name}</p>`;
+        document.getElementById('col0').innerHTML += `<i onclick="startChangeName(${players.players[x].id})" class="fas fa-edit"></i><p><i onclick="players.removePlayer(${players.players[x].id})" class="fas fa-trash-alt"></i> ${players.players[x].name}</p>`;
         document.getElementById('col02').innerHTML += `<p>${players.players[x].name}</p>`;
     }
     for (let initalIter = 0; initalIter < 18; initalIter++){
@@ -327,6 +332,9 @@ function hideAddPlayer(){
     document.getElementById('modalSpace').style.display ='none';
     document.getElementById('addplayerSpace').style.display = 'none';
     document.getElementsByClassName('containsAll')[0].style.filter = 'blur(0px)';
+    if(document.getElementById('submitBTN').onclick != 'addPlayer()'){
+        document.getElementById('submitBTN').setAttribute('onclick','addPlayer()');
+    }
 }
 function hideMessageSpace(){
     document.getElementById('messageSpace').style.display = 'none';
@@ -336,4 +344,38 @@ function showMessageSpace(){
     document.getElementById('modalSpace').style.display = 'block';
     document.getElementById('messageSpace').style.display = 'block';
     document.getElementsByClassName('containsAll')[0].style.filter = 'blur(5px)';
+}
+
+function changeName(pID){
+    let name = document.getElementById('playerName');
+    let nameThere = false;
+    for (let i = 0; i < players.players.length; i++){
+        if (players.players[i].name == name.value){
+            nameThere = true;
+        }
+    }
+    if (name.value == 0 || name.value == ''){
+        let messageSpace = document.getElementById('messageSpace');
+        messageSpace.style.display = 'block';
+        messageSpace.innerHTML = '<h3>You did not enter a correct name</h3>';
+
+    }
+    else if(nameThere === true ){
+        let messageSpace = document.getElementById('messageSpace');
+        messageSpace.innerHTML = '<h3>That Name Already Exists</h3>';
+        messageSpace.style.display = 'block';
+    }
+    else{
+        players.editPlayerName(pID,name.value);
+        hideAddPlayer();
+        drawPage();
+        hideMessageSpace();
+        name.value = '';
+        document.getElementById('submitBTN').setAttribute('onclick',`addPlayer()`);
+    }
+}
+
+function startChangeName(pID){
+    document.getElementById('submitBTN').setAttribute('onclick',`changeName(${pID})`);
+    showAddPlayer();
 }
