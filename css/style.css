@@ -103,6 +103,8 @@ a{
 @media only screen and (max-width: 600px) {
     body,html{
         width: auto;
+        background-color: white;
+        color: black;
     }
     .tableSpace{
         width: 100%;
@@ -112,10 +114,18 @@ a{
     }
     .containsAll{
         width: 100%;
+        background-color: white;
     }
     .sideBySide{
         display: flex;
         /*width: 100%;*/
+    }
+    input, select,option,button{
+        background-color: white;
+    }
+    #modalSpace{
+        background-color: #DADFEA;
+        border-color: black;
     }
 }
 input, select,option,button{
