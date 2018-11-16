@@ -164,6 +164,7 @@ class Player{
     setScore(hole,value){
         this.holes[hole] = Number(value);
         drawPage();
+        this.messageCheck();
     }
     changeActive(){
         if (this.active){
@@ -193,6 +194,28 @@ class Player{
             result += Number(this.holes[i]);
         }
         return result;
+    }
+    messageCheck(){
+        let test = 0;
+        for (let i = 0; i < this.holes.length;i++){
+            if (this.holes[i] != 0 || this.holes[i] != ''){
+                test += 1;
+            }
+        }
+        if (test >= 18){
+            if(this.score - tee.totalPar > 0){
+                document.getElementById('messageSpace').innerHTML = `<h3>Good try ${this.name}!</h3>`;
+                showMessageSpace();
+            }
+            else if (this.score - tee.totalPar == 0){
+                document.getElementById('messageSpace').innerHTML = `<h3>Wow, you got PAR ${this.name}, great job!</h3>`;
+                showMessageSpace();
+            }
+            else{
+                document.getElementById('messageSpace').innerHTML = `<h3>Your under PAR! Looks like you're ready to go pro ${this.name}!</h3>`;
+                showMessageSpace();
+            }
+        }
     }
 }
 console.log('code has loaded');
@@ -272,4 +295,10 @@ function hideAddPlayer(){
 }
 function hideMessageSpace(){
     document.getElementById('messageSpace').style.display = 'none';
+}
+
+function showMessageSpace(){
+    document.getElementById('modalSpace').style.display = 'block';
+    document.getElementById('messageSpace').style.display = 'block';
+    document.getElementsByClassName('containsAll')[0].style.filter = 'blur(5px)';
 }
