@@ -159,10 +159,11 @@ class AllPlayers{
     }
     removePlayer(pID){
         for (let i=0;i<this.players.length;i++){
-            if (this.players[i].pID === pID){
+            if (this.players[i].id === pID){
                 this.players.splice(i,1);
             }
         }
+        drawPage();
     }
 }
 
@@ -174,6 +175,9 @@ class Player{
         this.active = isActive;
         this.score = score;
     }
+    // changeName(){
+    //     this.name =
+    // }
     setScore(hole,value){
         this.holes[hole] = Number(value);
         drawPage();
@@ -254,7 +258,7 @@ function drawPage(){
     document.getElementById('col0').innerHTML = `<p>Hole:</p><p>Yardage:</p><p>Handicap:</p><p>PAR</p>`;
     document.getElementById('col02').innerHTML = `<p>Hole:</p><p>Yardage:</p><p>Handicap:</p><p>PAR</p>`;
     for (let x = 0; x < players.players.length;x++){
-        document.getElementById('col0').innerHTML += `<p>${players.players[x].name}</p>`;
+        document.getElementById('col0').innerHTML += `<p><i onclick="players.removePlayer(${players.players[x].id})" class="fas fa-trash-alt"></i> ${players.players[x].name}</p>`;
         document.getElementById('col02').innerHTML += `<p>${players.players[x].name}</p>`;
     }
     for (let initalIter = 0; initalIter < 18; initalIter++){
